@@ -1,0 +1,46 @@
+# Job Recommendation System Configuration
+
+# Data settings
+data:
+  test_size: 0.2
+  min_interactions_per_user: 3
+  min_interactions_per_job: 2
+
+# Model configurations
+models:
+  tfidf:
+    enabled: true
+    max_features: 1000
+    ngram_range: [1, 2]
+  
+  sentence_transformer:
+    enabled: true
+    model_name: "all-MiniLM-L6-v2"
+  
+  user_based_cf:
+    enabled: true
+    min_interactions: 5
+  
+  item_based_cf:
+    enabled: true
+    min_interactions: 5
+  
+  matrix_factorization:
+    enabled: true
+    n_factors: 50
+    min_interactions: 5
+
+# Evaluation settings
+evaluation:
+  k_values: [5, 10, 20]
+  metrics: ["precision", "recall", "map", "ndcg", "hit_rate", "coverage"]
+
+# Training settings
+training:
+  random_seed: 42
+  verbose: true
+
+# Demo settings
+demo:
+  n_recommendations: 10
+  n_similar_jobs: 5
